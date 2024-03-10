@@ -1,0 +1,10 @@
+node_modules/
+npm-debug.log
+.vscode/
+.idea/
+/build/
+/dist/
+.env
+.npmrc
+.npmignore
+*.tmp
