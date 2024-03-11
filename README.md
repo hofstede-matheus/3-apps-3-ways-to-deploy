@@ -26,6 +26,8 @@ Storage
 ```bash
 sudo yum install git
 python3 -m ensurepip --upgrade
+pip install gunicorn
+sudo apt install nginx
 ```
 
 É necessário [configurar chaves SSH](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) e [adicionar no Github](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
@@ -45,5 +47,11 @@ git clone git@github.com:hofstede-matheus/3-apps-3-ways-to-deploy.git
 
 ```bash
 pip3 install -r requirements.txt
-python3 app.py
+gunicorn -b 0.0.0.0:8000 app:app
+```
+
+## Nginx
+
+```bash
+sudo nano /etc/nginx/nginx.conf
 ```
