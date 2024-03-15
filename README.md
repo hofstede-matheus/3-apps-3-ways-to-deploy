@@ -53,6 +53,10 @@ Network settings
 Storage
 1x 8gb gp3
 
+### Conectar
+
+Recomendo via EC2 Instance Connect, pra coisas simples
+
 ### Dependências
 
 ```bash
@@ -120,3 +124,12 @@ sudo systemctl restart nginx
 Load balancer
 
 Configurar Elastic IP
+
+## ECS
+
+Na sua máquina
+
+```bash
+docker build -t nodeapp .
+docker run -dit --name nodeapp -p 3000:3000  nodeapp
+```
