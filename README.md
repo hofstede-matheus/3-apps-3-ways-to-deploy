@@ -200,6 +200,18 @@ docker tag nodeapp:latest ...
 docker push ...
 ```
 
+### ECS - Task Definition
+
+AWS Fargate
+
+Image URI do ECR
+
+### Rodar Task
+
+Cluster
+
+Run new Task
+
 ## Finalizando
 
 Não esquecer de deletar os recursos criados pra não ser cobrado
