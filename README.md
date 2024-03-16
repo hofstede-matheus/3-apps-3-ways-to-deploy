@@ -214,6 +214,30 @@ Run new Task
 
 Family
 
+Public IP
+
+### Lambda
+
+### Agenda
+
+Criar uma Lambda Function
+
+Criar um API Gateway
+
+### Configurações
+
+Node.js 16.x
+
+x86_64
+
+### Upload do código
+
+Upload de um arquivo .zip
+
+### API Gateway
+
+Adicionar um Trigger de API Gateway
+
 ## Finalizando
 
 Não esquecer de deletar os recursos criados pra não ser cobrado
