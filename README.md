@@ -10,7 +10,7 @@
 
 ![](./images/2023-05-05-11_15_08-15-AWS-Projects-Ideas-for-Beginners-to-Practice-in-2023.png) https://k21academy.com/amazon-web-services/overview-of-amazon-web-services-concepts/
 
-### EC2
+### EC2 - Elastic Compute Cloud (C2)
 
 Serviço de Compute
 
@@ -22,7 +22,7 @@ Além das máquinas, gerenciar Redes Virtuais, Discos e Segurança
 
 Necessidade de configuração manual, a nível de Sistema Operacional e Redes Virtuais
 
-### ECS
+### ECS - Elastic Container Service
 
 Serviço de Container
 
@@ -32,9 +32,38 @@ Criação de containers Docker sob demanda
 
 Sua preocupação é com a aplicação e a plataforma que a executa, o Docker, não com a infraestrutura
 
+### ECR - Elastic Container Registry
+
+Registry de imagens de containers Docker
+
+CodeBuild pode ser usado para automatizar o build e push de imagens
+
+### AWS Lambda
+
+Serverless
+
+FaaS - Function as a Service
+
+Execução de código sem a necessidade de gerenciar a infraestrutura
+
 ## Free tier
 
+Ao criar uma conta na AWS, você tem acesso ao free tier, que te dá acesso a utlização de alguns serviços em certas condições gratuitamente por 12 meses
+
+Atenção na hora de criar recursos, pois alguns podem não estar no free tier e você pode ser cobrado por isso
+
+https://aws.amazon.com/free/
+
 ## EC2
+
+### Agenda
+
+- Criar uma instância
+- Conectar via EC2 Instance Connect
+- Instalar dependências
+- Clonar o repositório
+- Rodar a aplicação
+- Configurar o Nginx
 
 ### Configurações
 
@@ -125,11 +154,52 @@ Load balancer
 
 Configurar Elastic IP
 
-## ECS
+## ECS e ECR
+
+### Agenda
+
+- Criar cluster ECS
+- Criar uma Dockerfile
+- Criar uma imagem Docker
+- Fazer o push da imagem para o ECR
+- Criar um cluster
+- Criar um serviço
+
+### Configurações
+
+Cluster com AWS Fargate
+
+Repositório ECS Público\*
+
+Criação de um usuário no IAM com permissões de acesso ao ECR e ECS
+
+Criação de access keys
+
+Configuração do AWS CLI
+
+```bash
+aws configure
+```
+
+### Dockerfile
 
 Na sua máquina
 
 ```bash
 docker build -t nodeapp .
+# pra testar
 docker run -dit --name nodeapp -p 3000:3000  nodeapp
 ```
+
+### ECR
+
+```bash
+aws ecr get-login-password ...
+docker build -t nodeapp .
+docker tag nodeapp:latest ...
+docker push ...
+```
+
+## Finalizando
+
+Não esquecer de deletar os recursos criados pra não ser cobrado
