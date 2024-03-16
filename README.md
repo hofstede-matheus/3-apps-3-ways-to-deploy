@@ -6,6 +6,8 @@
 
 - Não tente reproduzir o que estou fazendo enquanto está assistindo a apresentação
 
+- Pode interromper para perguntas. Não fique com dúvidas!
+
 ## Serviços da AWS
 
 ![](./images/2023-05-05-11_15_08-15-AWS-Projects-Ideas-for-Beginners-to-Practice-in-2023.png) https://k21academy.com/amazon-web-services/overview-of-amazon-web-services-concepts/
