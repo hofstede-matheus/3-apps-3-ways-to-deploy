@@ -48,6 +48,12 @@ FaaS - Function as a Service
 
 Execução de código sem a necessidade de gerenciar a infraestrutura
 
+### API Gateway
+
+Serviço de gerenciamento de APIs
+
+Criação de APIs RESTful e WebSocket
+
 ## Free tier
 
 Ao criar uma conta na AWS, você tem acesso ao free tier, que te dá acesso a utlização de alguns serviços em certas condições gratuitamente por 12 meses
@@ -73,7 +79,7 @@ Amazon Linux 2023 AMI 2023.3.20240304.0 x86_64 HVM kernel-6.1
 
 t3.micro
 
-Sem keypair
+Sem keypair (o ideal seria criar uma, então para um projeto mais crítico, crie uma)
 
 Network settings
 
@@ -86,7 +92,7 @@ Storage
 
 ### Conectar
 
-Recomendo via EC2 Instance Connect, pra coisas simples
+Recomendo via EC2 Instance Connect, para coisas simples, já que não temos um keypair
 
 ### Dependências
 
@@ -97,7 +103,7 @@ pip3 install gunicorn
 sudo yum install nginx
 ```
 
-É necessário [configurar chaves SSH](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) e [adicionar no Github](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+Se o repositório for privado, é necessário [configurar chaves SSH](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) e [adicionar no Github](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -152,9 +158,9 @@ sudo systemctl restart nginx
 
 ### Outras configurações
 
-Load balancer
+Load balancer - Distribuir o tráfego entre várias instâncias
 
-Configurar Elastic IP
+Configurar Elastic IP - IP fixo para a instância
 
 ## ECS e ECR
 
@@ -164,7 +170,6 @@ Configurar Elastic IP
 - Criar uma Dockerfile
 - Criar uma imagem Docker
 - Fazer o push da imagem para o ECR
-- Criar um cluster
 - Criar um serviço
 
 ### Configurações
