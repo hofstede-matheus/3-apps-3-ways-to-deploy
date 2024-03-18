@@ -166,17 +166,15 @@ Configurar Elastic IP - IP fixo para a instância
 
 ### Agenda
 
-- Criar cluster ECS
-- Criar uma Dockerfile
-- Criar uma imagem Docker
+- Configurar ECS, ECR, IAM e AWS CLI
 - Fazer o push da imagem para o ECR
 - Criar um serviço
 
 ### Configurações
 
-Cluster com AWS Fargate
+Cluster com AWS Fargate com as configurações padrões
 
-Repositório ECS Público\*
+Repositório ECR Privado
 
 Criação de um usuário no IAM com permissões de acesso ao ECR e ECS
 
@@ -188,17 +186,29 @@ Configuração do AWS CLI
 aws configure
 ```
 
-### Dockerfile
+### Dockerfile e criação de imagem
 
-Na sua máquina
+```Dockerfile
+FROM --platform=linux/amd64 node:16-alpine3.15
 
-```bash
-docker build -t nodeapp .
-# pra testar
-docker run -dit --name nodeapp -p 3000:3000  nodeapp
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+EXPOSE 80
+
+CMD [ "node", "app.js"]
 ```
 
+Estou usando `--platform=linux/amd64` porque estou em um Mac da linha M (Silicon), mas se estivesse em um x86_64, não precisaria disso
+
 ### ECR
+
+Com o repositório privado criado, clique em View push commands receber os comandos para fazer o login e para fazer o push da imagem
 
 ```bash
 aws ecr get-login-password ...
@@ -207,9 +217,11 @@ docker tag nodeapp:latest ...
 docker push ...
 ```
 
+Após isso você verá que sua imagem foi enviada para esse repositório no ECR
+
 ### ECS - Task Definition
 
-AWS Fargate
+Launch Type: AWS Fargate
 
 Image URI do ECR
 
@@ -219,9 +231,17 @@ Cluster
 
 Run new Task
 
-Family
+Family: Nome da Task Definition
 
-Public IP
+\*Crie um novo security group com regras para aceitar toda conexão TCP de qualquer endereço!!
+
+![](./images/security_group.png)
+
+### Acessar API
+
+No cluster criado, clique na task que foi criada e copie o IP público
+
+Nesse caso, a aplicação está rodando na porta 80, no Dockerfile a porta 80 foi exposta e no serviço do ECS a porta 80 foi mapeada. Então, o IP público da task é o IP da aplicação.
 
 ### Lambda
 
